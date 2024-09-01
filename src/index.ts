@@ -1,13 +1,12 @@
 import 'dotenv/config'
 import express from 'express'
+import rotas from './rotas'
 
 const app = express()
 
 app.use(express.json())
 
-app.get('/ ', (req, res)=>{
-    res.json({mensagem: 'Servidor OK'})
-})
+app.use(rotas)
 
 const porta = process.env.PORT
 
