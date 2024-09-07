@@ -11,7 +11,18 @@ export default class PostControlador {
     }
 
     detalhar(req: Request, res: Response){
-        
+        const { id } = req.params
+
+        const post = posts.find((post) => {
+            return post.id === id
+    })
+
+    if(!post){
+        return res.status(404).json({
+            mensagem: 'Post não encontrado!'
+        })
+    }
+    return res.json(post)
     }
 
     cadastrar(req: Request, res: Response){
