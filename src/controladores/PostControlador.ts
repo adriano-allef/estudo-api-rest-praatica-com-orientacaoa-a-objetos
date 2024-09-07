@@ -85,7 +85,20 @@ export default class PostControlador {
     }
 
     excluir(req: Request, res: Response){
+        const { id } = req.params
         
+        const postIndice = posts.findIndex((post) => {
+            return post.id === id
+    })
 
+    if(postIndice === -1){
+        return res.status(404).json({
+            mensagem: 'Post não encontrado!'
+        })
+    }
+
+    posts.splice(postIndice, 1)
+
+    return res.status(204).send()
     }
 }
