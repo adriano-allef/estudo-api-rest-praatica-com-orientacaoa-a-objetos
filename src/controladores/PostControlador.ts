@@ -58,8 +58,29 @@ export default class PostControlador {
     }
 
     editar(req: Request, res: Response){
-        // buscar o autor que vai ser editado
-        
+        const { id } = req.params
+        const{ titulo, descricao } = req.body
+
+        const post = posts.find((post) => {
+            return post.id === id
+    })
+
+    if(!titulo || !descricao ){
+        return res.status(400).json({
+            mensagem: 'Titulo e descrição são obrigatórios!'
+        })
+    }
+
+    if(!post){
+        return res.status(404).json({
+            mensagem: 'Post não encontrado!'
+        })
+    }
+
+    post.titulo = titulo
+    post.descricao = descricao
+
+    return res.status(201).json(post)
         
     }
 

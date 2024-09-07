@@ -16,6 +16,7 @@ rotas.delete('/autores/:id', autorControlador.excluir)
 
 rotas.get('/postagens', postControlador.listar)
 rotas.get('/postagens/:id', postControlador.detalhar)
-rotas.get('/postagens/:id', postControlador.cadastrar)
+rotas.get('/postagens', postControlador.cadastrar)
+rotas.patch('/postagens/:id', postControlador.editar)
 
 export default rotas
